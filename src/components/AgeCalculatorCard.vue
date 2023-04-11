@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const years = ref(0);
+const months = ref(0);
+const days = ref(0);
 </script>
 
 <template>
@@ -30,13 +35,13 @@
     </form>
 
     <h3 class="results-heading">
-      <span class="results-number">- -</span> years
+      <span class="results-number">{{ years || '- -' }}</span> years
     </h3>
     <h3 class="results-heading">
-      <span class="results-number">- -</span> months
+      <span class="results-number">{{ months || '- -' }}</span> months
     </h3>
     <h3 class="results-heading">
-      <span class="results-number">- -</span> days
+      <span class="results-number">{{ days || '- -' }}</span> days
     </h3>
 
   </section>
