@@ -1,29 +1,53 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import type { Ref } from 'vue';
+import { intervalToDuration } from 'date-fns';
 
-const years = ref(0);
-const months = ref(0);
-const days = ref(0);
+let userYear: Ref<string | null> = ref(null);
+let userMonth: Ref<string | null> = ref(null);
+let userDay: Ref<string | null> = ref(null);
+
+let calculatedYears: Ref<number | null> = ref(null);
+let calculatedMonths: Ref<number | null> = ref(null);
+let calculatedDays: Ref<number | null> = ref(null);
+
+function calculateAge() {
+  if (!userYear.value || !userMonth.value || !userDay.value) return;
+
+  const currentDate = new Date;
+  const userDate = new Date(`${userYear.value}-${userMonth.value}-${userDay.value}`);
+
+  const difference = intervalToDuration({ start: userDate, end: currentDate });
+  if (!difference) return;
+
+  const { years, months, days } = difference;
+
+  calculatedYears.value = years || null;
+  calculatedMonths.value = months || null;
+  calculatedDays.value = days || null;
+}
 </script>
 
 <template>
   <section class="card">
 
-    <form>
+    <form @submit.prevent="calculateAge">
       <div class="form-controls">
         <div class="form-control">
           <label for="day">DAY</label>
-          <input required placeholder="DD" id="day" name="day" type="text" minlength="1" maxlength="2">
+          <input v-model="userDay" required placeholder="DD" id="day" name="day" type="text" minlength="1" maxlength="2">
         </div>
 
         <div class="form-control">
           <label for="month">MONTH</label>
-          <input required placeholder="MM" id="month" name="month" type="text" minlength="1" maxlength="2">
+          <input v-model="userMonth" required placeholder="MM" id="month" name="month" type="text" minlength="1"
+            maxlength="2">
         </div>
 
         <div class="form-control">
           <label for="year">YEAR</label>
-          <input required placeholder="YYYY" id="year" name="year" type="text" minlength="4" maxlength="4">
+          <input v-model="userYear" required placeholder="YYYY" id="year" name="year" type="text" minlength="4"
+            maxlength="4">
         </div>
       </div>
 
@@ -35,13 +59,13 @@ const days = ref(0);
     </form>
 
     <h3 class="results-heading">
-      <span class="results-number">{{ years || '- -' }}</span> years
+      <span class="results-number">{{ calculatedYears || '- -' }}</span> years
     </h3>
     <h3 class="results-heading">
-      <span class="results-number">{{ months || '- -' }}</span> months
+      <span class="results-number">{{ calculatedMonths || '- -' }}</span> months
     </h3>
     <h3 class="results-heading">
-      <span class="results-number">{{ days || '- -' }}</span> days
+      <span class="results-number">{{ calculatedDays || '- -' }}</span> days
     </h3>
 
   </section>
