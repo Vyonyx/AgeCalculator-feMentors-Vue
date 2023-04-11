@@ -46,7 +46,7 @@ $tablet-breakpoint: 768px;
   border-bottom-right-radius: 8rem;
   padding: var(--spacing);
 
-  max-width: 25rem;
+  max-width: 650px;
   height: 50vh;
 }
 
@@ -57,6 +57,7 @@ $tablet-breakpoint: 768px;
   gap: var(--grid-gap);
   justify-content: space-between;
   align-items: center;
+  max-width: 500px;
 
   .form-control {
     display: flex;
@@ -79,8 +80,15 @@ $tablet-breakpoint: 768px;
       border: 1px solid var(--light-grey);
       border-radius: 0.5rem;
       width: calc(100% - calc(var(--grid-gap) + var(--grid-gap)));
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 800;
+
+    }
+
+    @media (min-width: $tablet-breakpoint) {
+      input {
+        font-size: 24px;
+      }
     }
   }
 }
@@ -113,13 +121,18 @@ $tablet-breakpoint: 768px;
     border: none;
     cursor: pointer;
 
-    @media (min-width: $tablet-breakpoint) {
-      right: 0;
-    }
 
     img {
       width: 60%;
       aspect-ratio: 1/1;
+    }
+  }
+
+  @media (min-width: $tablet-breakpoint) {
+    --button-height: 5rem;
+
+    button {
+      right: 0;
     }
   }
 }
