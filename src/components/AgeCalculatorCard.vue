@@ -29,6 +29,16 @@
       </div>
     </form>
 
+    <h3 class="results-heading">
+      <span class="results-number">- -</span> years
+    </h3>
+    <h3 class="results-heading">
+      <span class="results-number">- -</span> months
+    </h3>
+    <h3 class="results-heading">
+      <span class="results-number">- -</span> days
+    </h3>
+
   </section>
 </template>
 
@@ -47,7 +57,7 @@ $tablet-breakpoint: 768px;
   padding: var(--spacing);
 
   max-width: 650px;
-  height: 50vh;
+  height: fit-content;
 }
 
 .form-controls {
@@ -134,6 +144,21 @@ $tablet-breakpoint: 768px;
     button {
       right: 0;
     }
+  }
+}
+
+.results-heading {
+  margin: 0;
+  font-size: 55px;
+  font-weight: 800;
+  font-style: italic;
+
+  .results-number {
+    color: var(--purple);
+  }
+
+  @media (min-width: $tablet-breakpoint) {
+    font-size: 80px;
   }
 }
 </style>
