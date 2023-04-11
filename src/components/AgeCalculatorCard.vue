@@ -5,19 +5,27 @@
   <section class="card">
 
     <form>
-      <div class="form-control">
-        <label for="day">DAY</label>
-        <input id="day" name="day" type="text" min="1" max="31">
+      <div class="form-controls">
+        <div class="form-control">
+          <label for="day">DAY</label>
+          <input required placeholder="DD" id="day" name="day" type="text" minlength="1" maxlength="2">
+        </div>
+
+        <div class="form-control">
+          <label for="month">MONTH</label>
+          <input required placeholder="MM" id="month" name="month" type="text" minlength="1" maxlength="2">
+        </div>
+
+        <div class="form-control">
+          <label for="year">YEAR</label>
+          <input required placeholder="YYYY" id="year" name="year" type="text" minlength="4" maxlength="4">
+        </div>
       </div>
 
-      <div class="form-control">
-        <label for="month">MONTH</label>
-        <input id="month" name="month" type="text" min="1" max="12">
-      </div>
-
-      <div class="form-control">
-        <label for="year">YEAR</label>
-        <input id="year" name="year" type="text">
+      <div class="submit-control">
+        <button type="submit">
+          <img src="../assets/icon-arrow.svg" alt="submit">
+        </button>
       </div>
     </form>
 
@@ -25,6 +33,8 @@
 </template>
 
 <style lang="scss">
+$tablet-breakpoint: 768px;
+
 .card {
   --spacing: 1.5rem;
 
@@ -40,7 +50,7 @@
   height: 50vh;
 }
 
-form {
+.form-controls {
   --grid-gap: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -71,6 +81,45 @@ form {
       width: calc(100% - calc(var(--grid-gap) + var(--grid-gap)));
       font-size: 24px;
       font-weight: 800;
+    }
+  }
+}
+
+.submit-control {
+  --button-height: 4rem;
+
+  position: relative;
+  margin: 2rem 0;
+  height: var(--button-height);
+
+  &::before {
+    --line-height: 1px;
+    position: absolute;
+    top: 50%;
+    content: '';
+    height: var(--line-height);
+    background: var(--light-grey);
+    width: 100%;
+  }
+
+  button {
+    position: absolute;
+    right: calc(50% - calc(var(--button-height)/2));
+    height: var(--button-height);
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    color: var(--white);
+    background: var(--purple);
+    border: none;
+    cursor: pointer;
+
+    @media (min-width: $tablet-breakpoint) {
+      right: 0;
+    }
+
+    img {
+      width: 60%;
+      aspect-ratio: 1/1;
     }
   }
 }
