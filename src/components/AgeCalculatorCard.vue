@@ -20,12 +20,21 @@ const userInput = ref({
   day: '',
 });
 
-const errorState = ref(false);
+const errorState = ref({
+  isError: false,
+  year: '',
+  month: '',
+  day: '',
+});
 
 function validateInputValues() {
-  if (!userInput.value["year"]) errorState.value = true;
-  if (!userInput.value["month"]) errorState.value = true;
-  if (!userInput.value["day"]) errorState.value = true;
+  const requiredMsg = "This field is required";
+  if (!userInput.value["year"]) errorState.value["year"] = requiredMsg;
+  if (!userInput.value["month"]) errorState.value["month"] = requiredMsg;
+  if (!userInput.value["day"]) errorState.value["day"] = requiredMsg;
+
+  const { year, month, day } = errorState.value;
+  if (year || month || day) errorState.value.isError = true;
 }
 
 function handleInputChange(e: Event) {
@@ -62,21 +71,24 @@ function calculateAge() {
 
     <form @submit.prevent="calculateAge">
       <div class="form-controls">
-        <div class="form-control" :class="errorState && 'form-error'">
+        <div class="form-control" :class="errorState.isError && 'form-error'">
           <label for="day">DAY</label>
           <input @change="handleInputChange" placeholder="DD" id="day" name="day" type="text" minlength="1" maxlength="2">
+          <p v-if="errorState.isError" class="error-msg">{{ errorState.day }}</p>
         </div>
 
-        <div class="form-control" :class="errorState && 'form-error'">
+        <div class="form-control" :class="errorState.isError && 'form-error'">
           <label for="month">MONTH</label>
           <input @change="handleInputChange" placeholder="MM" id="month" name="month" type="text" minlength="1"
             maxlength="2">
+          <p v-if="errorState.isError" class="error-msg">{{ errorState.month }}</p>
         </div>
 
-        <div class="form-control" :class="errorState && 'form-error'">
+        <div class="form-control" :class="errorState.isError && 'form-error'">
           <label for="year">YEAR</label>
           <input @change="handleInputChange" placeholder="YYYY" id="year" name="year" type="text" minlength="4"
             maxlength="4">
+          <p v-if="errorState.isError" class="error-msg">{{ errorState.year }}</p>
         </div>
       </div>
 
