@@ -10,13 +10,23 @@ let userYear: Ref<string | null> = ref(null);
 let userMonth: Ref<string | null> = ref(null);
 let userDay: Ref<string | null> = ref(null);
 
+let calculatedYears: Ref<number | null> = ref(null);
+let calculatedMonths: Ref<number | null> = ref(null);
+let calculatedDays: Ref<number | null> = ref(null);
+
 const userInput = ref({
   year: '',
   month: '',
   day: '',
 });
 
-const errorState = ref(true);
+const errorState = ref(false);
+
+function validateInputValues() {
+  if (!userInput.value["year"]) errorState.value = true;
+  if (!userInput.value["month"]) errorState.value = true;
+  if (!userInput.value["day"]) errorState.value = true;
+}
 
 function handleInputChange(e: Event) {
   const input = e.target as HTMLInputElement;
