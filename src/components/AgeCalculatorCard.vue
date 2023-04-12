@@ -10,6 +10,22 @@ let userYear: Ref<string | null> = ref(null);
 let userMonth: Ref<string | null> = ref(null);
 let userDay: Ref<string | null> = ref(null);
 
+const userInput = ref({
+  year: '',
+  month: '',
+  day: '',
+});
+
+const errorState = ref(true);
+
+function handleInputChange(e: Event) {
+  const input = e.target as HTMLInputElement;
+  const id = input.id;
+
+  if (id === 'year' || id === 'month' || id === 'day')
+    userInput.value[id] = input.value;
+}
+
 let calculatedYears: Ref<number | null> = ref(null);
 let calculatedMonths: Ref<number | null> = ref(null);
 let calculatedDays: Ref<number | null> = ref(null);
@@ -36,20 +52,20 @@ function calculateAge() {
 
     <form @submit.prevent="calculateAge">
       <div class="form-controls">
-        <div class="form-control">
+        <div class="form-control" :class="errorState && 'form-error'">
           <label for="day">DAY</label>
-          <input v-model="userDay" required placeholder="DD" id="day" name="day" type="text" minlength="1" maxlength="2">
+          <input @change="handleInputChange" placeholder="DD" id="day" name="day" type="text" minlength="1" maxlength="2">
         </div>
 
-        <div class="form-control">
+        <div class="form-control" :class="errorState && 'form-error'">
           <label for="month">MONTH</label>
-          <input v-model="userMonth" required placeholder="MM" id="month" name="month" type="text" minlength="1"
+          <input @change="handleInputChange" placeholder="MM" id="month" name="month" type="text" minlength="1"
             maxlength="2">
         </div>
 
-        <div class="form-control">
+        <div class="form-control" :class="errorState && 'form-error'">
           <label for="year">YEAR</label>
-          <input v-model="userYear" required placeholder="YYYY" id="year" name="year" type="text" minlength="4"
+          <input @change="handleInputChange" placeholder="YYYY" id="year" name="year" type="text" minlength="4"
             maxlength="4">
         </div>
       </div>
