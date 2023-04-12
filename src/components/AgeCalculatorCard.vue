@@ -184,6 +184,7 @@ $tablet-breakpoint: 768px;
   font-size: 55px;
   font-weight: 800;
   font-style: italic;
+  color: var(--off-black);
 
   .results-number {
     color: var(--purple);
