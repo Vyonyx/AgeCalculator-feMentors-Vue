@@ -3,6 +3,9 @@ import { ref } from 'vue';
 import type { Ref } from 'vue';
 import { intervalToDuration } from 'date-fns';
 
+// TODO: Input verification
+// TODO: Error UI
+
 let userYear: Ref<string | null> = ref(null);
 let userMonth: Ref<string | null> = ref(null);
 let userDay: Ref<string | null> = ref(null);
