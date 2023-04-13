@@ -140,10 +140,10 @@ $tablet-breakpoint: 768px;
   max-width: 500px;
 
   .form-control {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: calc(var(--grid-gap) / 5);
-
 
     label {
       color: var(--smokey-grey);
@@ -162,13 +162,32 @@ $tablet-breakpoint: 768px;
       width: calc(100% - calc(var(--grid-gap) + var(--grid-gap)));
       font-size: 20px;
       font-weight: 800;
+    }
 
+    .error-msg {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 5px);
+      font-size: 0.8rem;
     }
 
     @media (min-width: $tablet-breakpoint) {
       input {
         font-size: 24px;
       }
+    }
+  }
+
+  .form-control.form-error {
+    color: red;
+    border-color: red;
+
+    label {
+      color: inherit;
+    }
+
+    input {
+      border-color: inherit;
     }
   }
 }
