@@ -45,10 +45,6 @@ function handleInputChange(e: Event) {
     userInput.value[id] = input.value;
 }
 
-let calculatedYears: Ref<number | null> = ref(null);
-let calculatedMonths: Ref<number | null> = ref(null);
-let calculatedDays: Ref<number | null> = ref(null);
-
 function calculateAge() {
   if (!userYear.value || !userMonth.value || !userDay.value) return;
 
