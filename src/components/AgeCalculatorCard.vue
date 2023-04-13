@@ -46,19 +46,32 @@ function handleInputChange(e: Event) {
 }
 
 function calculateAge() {
-  if (!userYear.value || !userMonth.value || !userDay.value) return;
+  try {
+    const { year, month, day } = userInput.value
+    if (!year || !month || !day) throw new Error("Required");
 
-  const currentDate = new Date;
-  const userDate = new Date(`${userYear.value}-${userMonth.value}-${userDay.value}`);
+    const currentDate = new Date;
+    const userDate = new Date(`${year}-${month}-${day}`);
 
-  const difference = intervalToDuration({ start: userDate, end: currentDate });
-  if (!difference) return;
+    const difference = intervalToDuration({ start: userDate, end: currentDate });
+    if (!difference) return;
 
-  const { years, months, days } = difference;
+    const { years, months, days } = difference;
 
-  calculatedYears.value = years || null;
-  calculatedMonths.value = months || null;
-  calculatedDays.value = days || null;
+    calculatedYears.value = years || null;
+    calculatedMonths.value = months || null;
+    calculatedDays.value = days || null;
+
+  } catch (error) {
+    console.log(error);
+    if (error instanceof Error && error.message === "Required") {
+      errorState.value.isError = true;
+      Object.keys(errorState.value).forEach(key => {
+        if (key === "year" || key === "month" || key === "day")
+          errorState.value[key] = userInput.value[key] ? "" : "This field is required"
+      })
+    }
+  }
 }
 </script>
 
