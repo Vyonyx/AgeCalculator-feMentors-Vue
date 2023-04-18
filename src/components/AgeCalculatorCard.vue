@@ -41,8 +41,15 @@ function handleInputChange(e: Event) {
   const input = e.target as HTMLInputElement;
   const id = input.id;
 
-  if (id === 'year' || id === 'month' || id === 'day')
+  if (id === 'year' || id === 'month' || id === 'day') {
     userInput.value[id] = input.value;
+    errorState.value[id] = "";
+  }
+
+  if (userInput.value.year && userInput.value.month && userInput.value.day) {
+    errorState.value.isError = false;
+  }
+
 }
 
 function calculateAge() {
