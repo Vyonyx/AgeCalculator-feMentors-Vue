@@ -139,6 +139,12 @@ $tablet-breakpoint: 768px;
   height: fit-content;
 }
 
+@media (min-width: $tablet-breakpoint) {
+  .card {
+    width: 100%;
+  }
+}
+
 .form-controls {
   --grid-gap: 1rem;
   display: grid;
