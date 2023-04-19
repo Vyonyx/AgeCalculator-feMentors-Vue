@@ -3,10 +3,6 @@ import { ref } from 'vue';
 import type { Ref } from 'vue';
 import { intervalToDuration } from 'date-fns';
 
-let userYear: Ref<string | null> = ref(null);
-let userMonth: Ref<string | null> = ref(null);
-let userDay: Ref<string | null> = ref(null);
-
 let calculatedYears: Ref<number | null> = ref(null);
 let calculatedMonths: Ref<number | null> = ref(null);
 let calculatedDays: Ref<number | null> = ref(null);
