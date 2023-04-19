@@ -171,6 +171,11 @@ $tablet-breakpoint: 768px;
       width: calc(100% - calc(var(--grid-gap) + var(--grid-gap)));
       font-size: 20px;
       font-weight: 800;
+
+      &:focus {
+        outline: none !important;
+        border-color: var(--purple);
+      }
     }
 
     .error-msg {
