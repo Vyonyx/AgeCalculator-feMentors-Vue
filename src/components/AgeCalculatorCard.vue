@@ -79,7 +79,6 @@ function calculateAge() {
     calculatedDays.value = days || null;
 
   } catch (error) {
-    console.log(error);
     if (error instanceof Error && error.message === "Required") {
       errorState.value.isError = true;
       Object.keys(errorState.value).forEach(key => {
