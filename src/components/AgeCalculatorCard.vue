@@ -20,16 +20,6 @@ const errorState = ref({
   day: '',
 });
 
-function validateInputValues() {
-  const requiredMsg = "This field is required";
-  if (!userInput.value["year"]) errorState.value["year"] = requiredMsg;
-  if (!userInput.value["month"]) errorState.value["month"] = requiredMsg;
-  if (!userInput.value["day"]) errorState.value["day"] = requiredMsg;
-
-  const { year, month, day } = errorState.value;
-  if (year || month || day) errorState.value.isError = true;
-}
-
 function handleInputChange(e: Event) {
   const input = e.target as HTMLInputElement;
   const id = input.id;
