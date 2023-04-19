@@ -48,6 +48,9 @@ function handleInputChange(e: Event) {
 
   if (userInput.value.year && userInput.value.month && userInput.value.day) {
     errorState.value.isError = false;
+    errorState.value.year = "";
+    errorState.value.month = "";
+    errorState.value.day = "";
   }
 
 }
@@ -59,6 +62,12 @@ function calculateAge() {
 
     const currentDate = new Date;
     const userDate = new Date(`${year}-${month}-${day}`);
+
+    if (Number.parseInt(userInput.value.year) > currentDate.getFullYear()) errorState.value.year = "Must be in the past";
+    if (Number.parseInt(userInput.value.month) > 12) errorState.value.month = "Must be a valid month";
+    if (!userDate.getDay()) errorState.value.day = "Must be a valid day";
+
+    if (errorState.value.year || errorState.value.month || errorState.value.day) throw new Error("Invalid");
 
     const difference = intervalToDuration({ start: userDate, end: currentDate });
     if (!difference) return;
@@ -77,6 +86,8 @@ function calculateAge() {
         if (key === "year" || key === "month" || key === "day")
           errorState.value[key] = userInput.value[key] ? "" : "This field is required"
       })
+    } else if (error instanceof Error && error.message === "Invalid") {
+      errorState.value.isError = true;
     }
   }
 }
