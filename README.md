@@ -12,9 +12,7 @@ This is a solution to the [Age calculator app challenge on Frontend Mentor](http
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -56,6 +54,15 @@ Users should be able to:
 Managing separate error messages for each form control was difficult because each error message was unique and required separate validation.
 I chose to throw errors during the validation step and catch those error messages to perform custom error state changes that allowed enough flexibility to accomodate unique error messages for each form.
 The solution is not the most elegant solution but this process has inspired me to research patterns for handling custom error messages and validation.
+
+### Continued development
+
+When comparing the design file to the final outcome, I need to:
+
+- Reduce the gap between the bold letters (calculator output)
+- Make bold text a heavier font
+- Increase card padding
+- Increase font sizes for all text
 
 ## Author
 
