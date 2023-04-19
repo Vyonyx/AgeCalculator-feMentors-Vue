@@ -240,6 +240,9 @@ $tablet-breakpoint: 768px;
     border: none;
     cursor: pointer;
 
+    &:hover {
+      background: var(--off-black);
+    }
 
     img {
       width: 60%;
