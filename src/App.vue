@@ -15,5 +15,8 @@ main {
   background: var(--off-white);
   height: 100vh;
   padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
