@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/Vyonyx/AgeCalculator-feMentors-Vue](https://your-solution-url.com)
-- Live Site URL: [https://vyonyx.github.io/AgeCalculator-feMentors-Vue/](https://your-live-site-url.com)
+- Solution URL: [GitHub](https://github.com/Vyonyx/AgeCalculator-feMentors-Vue)
+- Live Site URL: [GitHub Pages](https://vyonyx.github.io/AgeCalculator-feMentors-Vue/)
 
 ## My process
 
